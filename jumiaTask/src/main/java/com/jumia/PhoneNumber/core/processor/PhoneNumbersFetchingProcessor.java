@@ -9,6 +9,7 @@ import com.jumia.PhoneNumber.core.validator.CountryShouldExist;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class PhoneNumbersFetchingProcessor extends BaseProcessor<PhoneNumbersFetchingResponse> {
 
@@ -49,7 +50,10 @@ public class PhoneNumbersFetchingProcessor extends BaseProcessor<PhoneNumbersFet
     private List<Customer> getCustomers() {
         List<Customer> result;
         if (request.getCountryName() == null) {
-            result = phoneNumberRepo.findAll();
+            Iterable<Customer> fetchedPhones = phoneNumberRepo.findAll();
+            result = StreamSupport
+                    .stream(fetchedPhones.spliterator(), false)
+                    .collect(Collectors.toList());
         } else {
             result = getCustomersInCountry();
         }
@@ -58,9 +62,9 @@ public class PhoneNumbersFetchingProcessor extends BaseProcessor<PhoneNumbersFet
 
     private List<Customer> getCustomersInCountry() {
         String regex = countryCodes.get(request.getCountryName());
-
-        return phoneNumberRepo.findAll()
-                .stream()
+        Iterable<Customer> fetchedPhones = phoneNumberRepo.findAll();
+        return StreamSupport
+                .stream(fetchedPhones.spliterator(), false)
                 .filter(customer -> customer.getPhone().matches(regex))
                 .collect(Collectors.toList());
     }

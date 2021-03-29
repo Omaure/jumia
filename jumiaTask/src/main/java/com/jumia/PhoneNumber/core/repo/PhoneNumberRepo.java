@@ -1,7 +1,7 @@
 package com.jumia.PhoneNumber.core.repo;
 
 import com.jumia.PhoneNumber.core.models.Customer;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 
-public interface PhoneNumberRepo extends JpaRepository<Customer, Integer> {}
+public interface PhoneNumberRepo extends CrudRepository<Customer, Integer> { }

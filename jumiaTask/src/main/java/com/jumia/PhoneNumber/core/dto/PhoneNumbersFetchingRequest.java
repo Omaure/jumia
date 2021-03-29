@@ -1,7 +1,7 @@
 package com.jumia.PhoneNumber.core.dto;
 
 public class PhoneNumbersFetchingRequest {
-    private String countryName = "";
+    private String countryName = null;
 
     public PhoneNumbersFetchingRequest() {}
 
