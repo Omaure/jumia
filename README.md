@@ -33,12 +33,7 @@ change the tag if you want to
 After That run the docker image:
 change the port if you want to.
 
-`docker run -p8888:8088 jumia:latest`
+`docker run -p8088:8088 jumia:latest`
 
 Notes:
-
-1- No Unit tests are not covered since JPA should be tested in the integration tests.
-
-2- I was not able to write a native SQL query because of the sqlite limitations and could not match the regex unless using a match while fetching all of the numbers
-
-3- I did not provide any frontend please use postman to test the API 
+- I was not able to write a native SQL query because of the sqlite limitations and could not match the regex unless using a match while fetching all of the numbers
