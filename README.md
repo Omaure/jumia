@@ -25,12 +25,12 @@ Models:
    | `GET /phones=?country=any`  | List all phones by country optional query param                                         |
 
 
-To Build Docker Image for backend go to root then please run: 
+To Build Docker Image for backend go to backend directory root then please run: 
 change the tag if you want to
 
 `docker build --tag=jumiabackend:latest .`
 
-To Build Docker Image for frontnend please run: 
+To Build Docker Image for frontnend go to the frontend directory root then please run: 
 change the tag if you want to
 
 `docker build --tag=jumiafrontend:latest .`
