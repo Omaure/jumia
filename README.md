@@ -41,6 +41,7 @@ change the port if you want to.
 `docker run -p 8088:8088 jumiabackend:latest`
 
 run the frontend docker image:
+
 `docker run -p 3001:3000 jumiafrontend:latest`
 
 access the frontend on 3001 localhost and search for a valid country to find results
