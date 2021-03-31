@@ -17,11 +17,11 @@ public class PhoneNumbersFetchingProcessor extends BaseProcessor<PhoneNumbersFet
 
     static {
         countryCodes = new HashMap<>();
-        countryCodes.put("Cameroon", "\\(237\\) ?[2368]\\d{7,8}$");
-        countryCodes.put("Ethiopia", "\\(251\\) ?[1-59]\\d{8}$");
-        countryCodes.put("Morocco", "\\(212\\) ?[5-9]\\d{8}$");
-        countryCodes.put("Mozambique", "\\(258\\) ?[28]\\d{7,8}$");
-        countryCodes.put("Uganda", "\\(256\\) ?\\d{9}$");
+        countryCodes.put("cameroon", "\\(237\\) ?[2368]\\d{7,8}$");
+        countryCodes.put("ethiopia", "\\(251\\) ?[1-59]\\d{8}$");
+        countryCodes.put("morocco", "\\(212\\) ?[5-9]\\d{8}$");
+        countryCodes.put("mozambique", "\\(258\\) ?[28]\\d{7,8}$");
+        countryCodes.put("uganda", "\\(256\\) ?\\d{9}$");
     }
 
     private final PhoneNumbersFetchingRequest request;
@@ -36,7 +36,7 @@ public class PhoneNumbersFetchingProcessor extends BaseProcessor<PhoneNumbersFet
     @Override
     void validate() {
         if (request.getCountryName() != null) {
-            new CountryShouldExist(request.getCountryName(), countryCodes).orThrow();
+            new CountryShouldExist(request.getCountryName().toLowerCase(), countryCodes).orThrow();
         }
     }
 
@@ -61,7 +61,7 @@ public class PhoneNumbersFetchingProcessor extends BaseProcessor<PhoneNumbersFet
     }
 
     private List<Customer> getCustomersInCountry() {
-        String regex = countryCodes.get(request.getCountryName());
+        String regex = countryCodes.get(request.getCountryName().toLowerCase());
         Iterable<Customer> fetchedPhones = phoneNumberRepo.findAll();
         return StreamSupport
                 .stream(fetchedPhones.spliterator(), false)
