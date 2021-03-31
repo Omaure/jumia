@@ -25,15 +25,26 @@ Models:
    | `GET /phones=?country=any`  | List all phones by country optional query param                                         |
 
 
-To Build Docker Image run: 
+To Build Docker Image for backend go to backend directory root then please run: 
 change the tag if you want to
 
-`docker build --tag=jumia:latest .`
+`docker build --tag=jumiabackend:latest .`
 
-After That run the docker image:
+To Build Docker Image for frontnend go to the frontend directory root then please run: 
+change the tag if you want to
+
+`docker build --tag=jumiafrontend:latest .`
+
+After That run the backend docker image:
 change the port if you want to.
 
-`docker run -p8088:8088 jumia:latest`
+`docker run -p 8088:8088 jumiabackend:latest`
+
+run the frontend docker image:
+
+`docker run -p 3001:3000 jumiafrontend:latest`
+
+access the frontend on 3001 localhost and search for a valid country to find results
 
 Notes:
 - I was not able to write a native SQL query because of the sqlite limitations and could not match the regex unless using a match while fetching all of the numbers
